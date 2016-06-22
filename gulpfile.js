@@ -8,8 +8,8 @@ const del = require('del');
 const paths = {
     src: './src',
     dest: './build',
-    php: ['./src/*.php'],
-    sass: './src/css/*.sass'
+    sass: './src/css/*.sass',
+    misc: ['./src/**/*.php', './src/**/.htaccess']
 };
 
 gulp.task('clean-styles', () => {
@@ -25,12 +25,12 @@ gulp.task('styles', () => {
         .pipe(gulp.dest(paths.dest + '/css'));
 });
 
-gulp.task('clean-php', () => {
-    return del(paths.php);
+gulp.task('clean-misc', () => {
+    return del(paths.misc);
 });
 
-gulp.task('php', () => {
-    return gulp.src(paths.php)
+gulp.task('misc', () => {
+    return gulp.src(paths.misc)
         .pipe(gulp.dest(paths.dest));
 });
 
@@ -38,8 +38,10 @@ gulp.task('watch', ['build'], () => {
     gulp.watch(paths.src, ['build']);
 });
 
-gulp.task('clean', ['clean-php', 'clean-styles']);
+gulp.task('clean', ['clean-misc', 'clean-styles'], () => {
+    return del(paths.dest);
+});
 
-gulp.task('build', ['styles', 'php']);
+gulp.task('build', ['styles', 'misc']);
 
 gulp.task('default', ['watch']);

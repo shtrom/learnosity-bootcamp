@@ -10,9 +10,12 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: <<-SHELL
     apt-get update
     apt-get install -y apache2 php5
-    if ! [ -L /var/www/html ]; then
-      rm -rf /var/www/html
-      ln -fs /vagrant/build /var/www/html
+    cp /vagrant/apache_conf/000-default.conf /etc/apache2/sites-available/000-default.conf
+    a2enmod rewrite
+    service apache2 restart
+    if ! [ -L /var/www ]; then
+      rm -rf /var/www
+      ln -fs /vagrant/build /var/www
     fi
   SHELL
 end
