@@ -1,22 +1,11 @@
-<script>
-var initOptions = {{ assessInit }};
-</script>
 
-
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<a href="https://author.learnosity.com/org/1/activity/516294/edit">Edit these questions</a>
 
 <div id="learnosity_assess"></div>
 
 <script>
-    var assessApp = LearnosityAssess.init(initOptions, "learnosity_assess", {
-        readyListener: function () {
-            console.log("readyListener");
-        },
-        errorListener: function () {
-            console.log("errorListener");
-        }
-    });
+    var initOpts = {{{ initOpts }}};
+    var itemsApp = LearnosityItems.init(initOpts);
 </script>
 
 <!--
