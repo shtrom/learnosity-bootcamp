@@ -9,6 +9,6 @@ date_default_timezone_set('UTC');
 
 $req = Request::createFromGlobals();
 $mainView = new MainView;
-$res = $mainView->render($req);
+$res = $mainView->render();
 $res->prepare($req);
 $res->send();

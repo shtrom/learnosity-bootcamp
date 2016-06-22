@@ -3,12 +3,11 @@ namespace Learnosity\Bootcamp\Views;
 
 use Learnosity\Bootcamp\View;
 use LearnositySdk\Request\Init;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class MainView implements View
 {
-    public function render(Request $req)
+    public function render()
     {
         $sessionId = uniqid();
         $userId = uniqid();
