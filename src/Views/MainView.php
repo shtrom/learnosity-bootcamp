@@ -1,17 +1,13 @@
 <?php
 namespace Learnosity\Bootcamp\Views;
-
-use Learnosity\Bootcamp\View;
+    
 use LearnositySdk\Request\Init;
 use Symfony\Component\HttpFoundation\Response;
 
-class MainView implements View
+class MainView
 {
-    public function render()
+    public function render($userId, $sessionId)
     {
-        $sessionId = uniqid();
-        $userId = uniqid();
-
         $init = new Init(
             'items',
             [
