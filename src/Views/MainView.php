@@ -10,7 +10,6 @@ class MainView
         $sessionId = uniqid();
         $userId = uniqid();
 
-        // Instantiate the SDK Init class with your security and request data:
         $init = new Init(
             'items',
             [
@@ -29,10 +28,7 @@ class MainView
             ]
         );
 
-        // Call the generate() method to retrieve a JavaScript object
-        $request = $init->generate();
-
-        echo $this->template($request);
+        echo $this->template($init->generate());
     }
 
     private function template($initOpts)
