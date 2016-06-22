@@ -1,0 +1,24 @@
+<script>
+var initOptions = {{ assessInit }};
+</script>
+
+
+<h1>{{title}}</h1>
+<p>Welcome to {{title}}</p>
+
+<div id="learnosity_assess"></div>
+
+<script>
+    var assessApp = LearnosityAssess.init(initOptions, "learnosity_assess", {
+        readyListener: function () {
+            console.log("readyListener");
+        },
+        errorListener: function () {
+            console.log("errorListener");
+        }
+    });
+</script>
+
+<!--
+  vim: ft=html
+-->
