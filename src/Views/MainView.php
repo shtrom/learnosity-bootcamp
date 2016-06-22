@@ -55,19 +55,20 @@ class MainView
         <html lang="en">
         <head>
             <meta charset="UTF-8">
-            <title>Title</title>
+            <title>Counting bootcamp</title>
             <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
         </head>
 
         <body>
-        <div id="learnosity_assess"></div>
+            <div id="learnosity_assess"></div>
+            <a href="https://author.learnosity.com">Edit these questions</a>
 
-        <script src="//items.learnosity.com"></script>
+            <script src="//items.learnosity.com"></script>
 
-        <script>
-            var initOpts = <?php echo $initOpts ?>;
-            var itemsApp = LearnosityItems.init(initOpts);
-        </script>
+            <script>
+                var initOpts = <?php echo $initOpts ?>;
+                var itemsApp = LearnosityItems.init(initOpts);
+            </script>
         </body>
         </html><?php
         return ob_get_clean();
