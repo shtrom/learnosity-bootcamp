@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node_modules/nodemon/bin/nodemon.js ./bin/www"
   },
   "dependencies": {
     "babel": "^6.5.2",
@@ -14,6 +14,7 @@
     "hbs": "~4.0.0",
     "morgan": "~1.7.0",
     "node-sass-middleware": "0.8.0",
+    "nodemon": "^1.9.2",
     "serve-favicon": "~2.3.0"
   }
 }
