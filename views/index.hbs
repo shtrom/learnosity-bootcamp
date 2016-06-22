@@ -9,16 +9,14 @@ var initOptions = {{ assessInit }};
 <div id="learnosity_assess"></div>
 
 <script>
-var assessApp = LearnosityAssess.init(initOptions, "learnosity_assess",
-    {
-      readyListener: function () {
-	console.log("readyListener");
-      },
-      errorListener: function () {
-	console.log("errorListener");
-      }
-    }
-    );
+    var assessApp = LearnosityAssess.init(initOptions, "learnosity_assess", {
+        readyListener: function () {
+            console.log("readyListener");
+        },
+        errorListener: function () {
+            console.log("errorListener");
+        }
+    });
 </script>
 
 <!--
