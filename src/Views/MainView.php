@@ -56,6 +56,7 @@ class MainView
         <head>
             <meta charset="UTF-8">
             <title>Counting bootcamp</title>
+            <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
             <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
         </head>
 
