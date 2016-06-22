@@ -3,7 +3,7 @@
 # https://docs.npmjs.com/cli/shrinkwrap#caveats
 node_modules
 bower_components
-/vendor/
+/php/vendor
 
 # Debug log from npm
 npm-debug.log
