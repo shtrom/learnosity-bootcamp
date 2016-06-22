@@ -32,3 +32,6 @@ npm-debug.log
 
 # JetBrains files
 .idea/*
+
+# Build folder
+build
