@@ -1,6 +1,6 @@
 <?php
 namespace Learnosity\Bootcamp\Views;
-    
+
 use LearnositySdk\Request\Init;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -46,7 +46,7 @@ class MainView
         </head>
 
         <body>
-            <a href="https://author.learnosity.com">Edit these questions</a>
+            <a href="https://author.learnosity.com/org/1/activity/516294/edit">Edit these questions</a>
             <div id="learnosity_assess"></div>
 
             <script src="//items.learnosity.com"></script>
