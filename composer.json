@@ -1,0 +1,12 @@
+{
+    "name": "mfom/bootcamp",
+    "authors": [
+        {
+            "name": "Michael Fulthorp",
+            "email": "michael.fulthorp@learnosity.com"
+        }
+    ],
+    "require": {
+        "learnosity/learnosity-sdk-php": "0.*"
+    }
+}

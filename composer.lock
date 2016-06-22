@@ -1,0 +1,54 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "0578ed506c906a475cea9188694b0034",
+    "content-hash": "d2fccfa947a24d094155025da5370b38",
+    "packages": [
+        {
+            "name": "learnosity/learnosity-sdk-php",
+            "version": "v0.5.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Learnosity/learnosity-sdk-php.git",
+                "reference": "e79526b8a91d938ea0c2a995f716144d4f57e370"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Learnosity/learnosity-sdk-php/zipball/e79526b8a91d938ea0c2a995f716144d4f57e370",
+                "reference": "e79526b8a91d938ea0c2a995f716144d4f57e370",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "LearnositySdk\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Include this package into your own codebase to ease integration with any of the Learnosity APIs",
+            "homepage": "https://github.com/Learnosity/learnosity-sdk-php",
+            "keywords": [
+                "learnosity",
+                "sdk"
+            ],
+            "time": "2015-08-19 05:41:45"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
