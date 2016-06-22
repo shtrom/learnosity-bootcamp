@@ -31,7 +31,7 @@ bower_components
 npm-debug.log
 
 # JetBrains files
-.idea/*
+.idea
 
 # Build folder
 build

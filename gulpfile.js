@@ -1,11 +1,10 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var autoprefixer = require('gulp-autoprefixer');
-var minifycss = require('gulp-minify-css');
-var importCss = require('gulp-import-css');
-var rename = require('gulp-rename');
+const gulp = require('gulp');
+const sass = require('gulp-sass');
+const minifycss = require('gulp-minify-css');
+const importCss = require('gulp-import-css');
+const rename = require('gulp-rename');
 
-gulp.task('styles', function() {
+gulp.task('styles', () => {
     return gulp.src('./public/css/*.sass')
         .pipe(sass().on('error', sass.logError))
         .pipe(rename({suffix: '.min'}))
@@ -14,10 +13,10 @@ gulp.task('styles', function() {
         .pipe(gulp.dest('./build/css'));
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', () => {
     gulp.watch('public/css/*.sass', ['styles']);
 });
 
-gulp.task('default', ['watch'], function() {
+gulp.task('default', ['watch'], () => {
 
 });
