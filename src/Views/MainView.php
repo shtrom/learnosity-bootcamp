@@ -25,10 +25,10 @@ class MainView
                 'user_id'=>$userId,
                 'items' => [
                     'mfom_bootcamp_cats',
+                    'mfom_bootcamp_chess',
                     'mfom_bootcamp_poker',
+                    'mfom_bootcamp_code',
                     'mfom_bootcamp_foosball',
-                    'mfom_count_3',
-                    'mfom_counting_2',
                 ],
                 'type'=>'local_practice',
                 'state'=>'initial',
