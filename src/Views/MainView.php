@@ -1,11 +1,14 @@
 <?php
 namespace Learnosity\Bootcamp\Views;
 
+use Learnosity\Bootcamp\View;
 use LearnositySdk\Request\Init;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
-class MainView
+class MainView implements View
 {
-    public function render()
+    public function render(Request $req)
     {
         $sessionId = uniqid();
         $userId = uniqid();
@@ -28,7 +31,11 @@ class MainView
             ]
         );
 
-        echo $this->template($init->generate());
+        return new Response(
+            $this->template($init->generate()),
+            Response::HTTP_OK,
+            ['content-type' => 'text/html']
+        );
     }
 
     private function template($initOpts)
@@ -44,8 +51,8 @@ class MainView
         </head>
 
         <body>
-            <div id="learnosity_assess"></div>
             <a href="https://author.learnosity.com">Edit these questions</a>
+            <div id="learnosity_assess"></div>
 
             <script src="//items.learnosity.com"></script>
 
