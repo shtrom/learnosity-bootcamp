@@ -12,6 +12,10 @@ const paths = {
     sass: './src/css/*.sass'
 };
 
+gulp.task('clean-styles', () => {
+    return del(paths.dest + '/css');
+});
+
 gulp.task('styles', () => {
     return gulp.src(paths.sass)
         .pipe(sass().on('error', sass.logError))
@@ -21,19 +25,21 @@ gulp.task('styles', () => {
         .pipe(gulp.dest(paths.dest + '/css'));
 });
 
+gulp.task('clean-php', () => {
+    return del(paths.php);
+});
+
 gulp.task('php', () => {
     return gulp.src(paths.php)
         .pipe(gulp.dest(paths.dest));
 });
 
-gulp.task('watch', () => {
+gulp.task('watch', ['build'], () => {
     gulp.watch(paths.src, ['build']);
 });
 
-gulp.task('clean', () => {
-    return del(paths.dest);
-});
+gulp.task('clean', ['clean-php', 'clean-styles']);
 
-gulp.task('build', ['clean', 'styles', 'php']);
+gulp.task('build', ['styles', 'php']);
 
-gulp.task('default', ['build', 'watch']);
+gulp.task('default', ['watch']);
