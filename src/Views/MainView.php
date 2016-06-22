@@ -15,30 +15,17 @@ class MainView
             'items',
             [
                 'consumer_key' => '4OkIF4wLnpI9L40m',
-                'domain'       => 'localhost',
-                'user_id'      => $userId
+                'domain' => 'localhost',
+                'user_id' => $userId
             ],
             '84468e36ee4d3bfea6f57fca1e2db3a5a00fa8e0',
             [
-                'rendering_type'=> 'assess',
-                'session_id'=>$sessionId,
-                'user_id'=>$userId,
-                'items' => [
-                    'mfom_bootcamp_cats',
-                    'mfom_bootcamp_chess',
-                    'mfom_bootcamp_poker',
-                    'mfom_bootcamp_code',
-                    'mfom_bootcamp_foosball',
-                ],
-                'type'=>'local_practice',
-                'state'=>'initial',
-                'config' => [
-                    'assessApiVersion' => 'v2',
-                    'questionsApiVersion' => 'v2',
-                    'title'=> 'Counting for the modern man',
-                    'subtitle'=> 'A holistic approach',
-                    'ui_style' => 'main',
-                ]
+                'rendering_type' => 'assess',
+                'session_id' => $sessionId,
+                'user_id' => $userId,
+                'activity_template_id' => 'mfom_bootcamp',
+                'type' => 'local_practice',
+                'state' => 'initial',
             ]
         );
 
