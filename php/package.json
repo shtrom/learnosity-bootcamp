@@ -1,8 +1,5 @@
 {
   "name": "learnosity-bootcamp",
   "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "start": "php -t public -S localhost:8080"
-  }
+  "private": true
 }
