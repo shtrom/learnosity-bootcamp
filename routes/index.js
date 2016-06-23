@@ -10,14 +10,14 @@ router.get('/', function(req, res, next) {
     var userId = uuid.v4();
     var sessionId = uuid.v4();
     var initOpts = Learnosity.init(
-        'items',
+        'items',					/* service */
         {
-            'consumer_key': '4OkIF4wLnpI9L40m',
+            'consumer_key': '4OkIF4wLnpI9L40m',		/* security */
             'domain': 'localhost',
             'user_id': userId
         },
-        '84468e36ee4d3bfea6f57fca1e2db3a5a00fa8e0',
-        {
+        '84468e36ee4d3bfea6f57fca1e2db3a5a00fa8e0',	/* secret */
+        {						/* request */
             'rendering_type': 'assess',
             'session_id': sessionId,
             'user_id': userId,
