@@ -26,7 +26,7 @@ router.get('/', function(req, res, next) {
             'state': 'initial'
         });
 
-    res.render('index', { title: 'Counting for the modern man', initOpts: JSON.stringify(initOpts) });
+    res.render('index', { title: 'Counting for the modern person', initOpts: JSON.stringify(initOpts) });
 });
 
 module.exports = router;

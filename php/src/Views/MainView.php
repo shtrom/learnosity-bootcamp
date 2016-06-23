@@ -40,14 +40,15 @@ class MainView
         <html lang="en">
         <head>
             <meta charset="UTF-8">
-            <title>Counting bootcamp</title>
+            <title>Counting for the modern person</title>
             <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
             <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
         </head>
 
         <body>
-            <a href="https://author.learnosity.com/org/1/activity/516294/edit">Edit these questions</a>
             <div id="learnosity_assess"></div>
+
+            <a href="https://author.learnosity.com/org/1/activity/516294/edit">Edit these questions</a>
 
             <script src="//items.learnosity.com"></script>
 
