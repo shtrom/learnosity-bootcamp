@@ -1,33 +1,24 @@
 <?php
 namespace Learnosity\Bootcamp\Views;
 
-use LearnositySdk\Request\Init;
+use Learnosity\Bootcamp\LearnosityApi;
 use Symfony\Component\HttpFoundation\Response;
 
 class MainView
 {
     public function render($userId, $sessionId)
     {
-        $init = new Init(
-            'items',
-            [
-                'consumer_key' => '4OkIF4wLnpI9L40m',
-                'domain' => 'localhost',
-                'user_id' => $userId
-            ],
-            '84468e36ee4d3bfea6f57fca1e2db3a5a00fa8e0',
-            [
-                'rendering_type' => 'assess',
-                'session_id' => $sessionId,
-                'user_id' => $userId,
-                'activity_template_id' => 'mfom_bootcamp',
-                'type' => 'local_practice',
-                'state' => 'initial',
-            ]
-        );
+        $initOpts = LearnosityApi::items([
+            'rendering_type' => 'assess',
+            'user_id'=>$userId,
+            'session_id' => $sessionId,
+            'activity_template_id' => 'mfom_bootcamp',
+            'type' => 'local_practice',
+            'state' => 'initial',
+        ]);
 
         return new Response(
-            $this->template($init->generate()),
+            $this->template($initOpts),
             Response::HTTP_OK,
             ['content-type' => 'text/html']
         );
@@ -35,7 +26,7 @@ class MainView
 
     private function template($initOpts)
     {
-        ob_start();
+        ob_start(); 
         ?><!DOCTYPE html>
         <html lang="en">
         <head>
