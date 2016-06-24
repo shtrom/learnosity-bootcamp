@@ -4,5 +4,8 @@
   "private": true,
   "scripts": {
     "start": "php -t public -S localhost:8080"
+  },
+  "dependencies": {
+    "bower": "^1.7.9"
   }
 }
