@@ -10,50 +10,53 @@ use Psr\Log\LoggerInterface;
 
 class DataView
 {
+    private $output;
+
     private function handler($data) {
-        $output = new ConsoleOutput();
-        $output->writeln(json_encode($data));
+        $this->output->writeln(json_encode($data));
     }
 
     public function render()
     {
+        $this->output = new ConsoleOutput();
 	$security = [
 	    'consumer_key' => '4OkIF4wLnpI9L40m',
 	    'domain' => 'localhost',
 	];
 	$secret = '84468e36ee4d3bfea6f57fca1e2db3a5a00fa8e0';
 	$request = [
-	    'limit' => 1,
-	    'types' => ['unit', 'module'],
+	    'limit' => 50,
+            /* 'references' => [ 'bootcamp' ], */
+            'summary' => true,
 	];
 	$action = 'get';
 
 
 	$dataApi = new DataApi();
-	$dataApi->requestRecursive(
+        $response = $dataApi->request(
+	/* $response = $dataApi->requestRecursive( */
 	    'https://data.learnosity.com/latest/itembank/items',
 	    $security,
 	    $secret,
 	    $request,
-	    $action,
-            function($data) {
-                $this->handler($data);
-            }
+	    $action//,
+            /* function($data) { */
+            /*     $this->handler($data); */
+            /* } */
 	);
+        $this->output->writeln(json_encode($response));
 
 	return new Response(
-            $this->template(),
+            $this->template($response),
 	    Response::HTTP_OK,
 	    ['content-type' => 'application/json']
 	);
     }
 
-    private function template()
+    private function template($response)
     {
 	ob_start();
-        ?>
-	    { "done": true }
-<?php
+        print(json_encode($response));
 	return ob_get_clean();
     }
 }
