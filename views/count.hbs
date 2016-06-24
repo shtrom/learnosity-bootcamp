@@ -33,7 +33,8 @@
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.send(JSON.stringify(request));
     xhr.onloadend = function(data) {
-      var initOpts = xhr.responseText;
+      console.log(data);
+      var initOpts = JSON.parse(xhr.responseText);
       itemsApp = LearnosityItems.init(initOpts);
     };
     console.log("done");
