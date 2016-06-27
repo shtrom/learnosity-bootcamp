@@ -25,9 +25,7 @@ class DataView
 	];
 	$secret = '84468e36ee4d3bfea6f57fca1e2db3a5a00fa8e0';
 	$request = [
-	    'limit' => 50,
             /* 'references' => [ 'bootcamp' ], */
-	    /* 'limit' => 1000, */
             'types' => ['mcq'],
             'summary' => true,
 	];
@@ -41,6 +39,13 @@ class DataView
         if ($next != 0) {
             $request['next'] = $next;
         }
+        $limit = 50;
+        if ($req->query->get("limit")) {
+            $limit = $req->query->get("limit");
+        } else if ($req->request->get("limit")) {
+            $limit = $req->request->get("limit");
+        }
+        $request['limit'] = $limit;
 
 	$action = 'get';
 
