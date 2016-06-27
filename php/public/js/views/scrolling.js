@@ -3,19 +3,67 @@
     var PRELOADED_SCREENS = 5;
     var ITEM_LIMIT_PER_REQUEST = 10;
     var DATA_ENDPOINT = '/data.php';
+    var MILLISECONDS_GIVEN = 2 * 60 * 1000;
 
     var deferLoadNextPage = _.debounce(_.defer.bind(null, loadNextPage), 1000);
 
     // Updated with the cursor to the next page of items in the data api.
     var next = null;
     var loadedItemCache = {};
+    var startTime = null;
+    var running = false;
 
     var itemsDiv = document.getElementById('items');
+    var startOverlay = document.getElementById('start');
+    var endOverlay = document.getElementById('end');
+    var startButton = document.getElementById('start-button');
+    var resultsButton = document.getElementById('results-button');
+    var clock = document.getElementById('clock');    
+
     window.itemsApp = LearnosityItems.init(ITEM_API_INIT_OPTS, {
-        readyListener: main
+        readyListener: watchScrolling
     });
 
-    function main() {
+    $(setup);
+
+    function setup() {
+        startButton.addEventListener('click', start);
+        resultsButton.addEventListener('click', results);
+    }
+
+    function start() {
+        $(startOverlay).hide();
+        startTime = Date.now();
+        running = true;
+        updateClock();
+    }
+
+    function stop() {
+        $(endOverlay).show();
+        running = false;
+    }
+
+    function updateClock() {
+        if (running) {
+	    var endTime = startTime + MILLISECONDS_GIVEN;
+	    var timeRemaining = endTime - Date.now();
+            if (timeRemaining <= 0) {
+                stop();
+            } else {
+                clock.textContent = moment(timeRemaining).format('m:s');
+                window.requestAnimationFrame(updateClock);
+            }
+	}
+    }
+
+    function results() {
+        document.location.href = '/report.php?userid=' +
+            ITEM_API_INIT_OPTS.security.userId + 
+            '&sessid=' +
+            ITEM_API_INIT_OPTS.request.sessionId;
+    }
+
+    function watchScrolling() {
         window.addEventListener('scroll', loadCheck);
         initItemCache();
         loadCheck();
