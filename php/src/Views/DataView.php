@@ -16,7 +16,7 @@ class DataView
         $this->output->writeln(json_encode($data));
     }
 
-    public function render()
+    public function render($req)
     {
         $this->output = new ConsoleOutput();
 	$security = [
@@ -27,10 +27,22 @@ class DataView
 	$request = [
 	    'limit' => 50,
             /* 'references' => [ 'bootcamp' ], */
+	    /* 'limit' => 1000, */
+            'types' => ['mcq'],
             'summary' => true,
 	];
-	$action = 'get';
 
+        $next = 0;
+        if ($req->query->get("next")) {
+            $next = $req->query->get("next");
+        } else if ($req->request->get("next")) {
+            $next = $req->request->get("next");
+        }
+        if ($next != 0) {
+            $request['next'] = $next;
+        }
+
+	$action = 'get';
 
 	$dataApi = new DataApi();
         $response = $dataApi->request(
@@ -46,7 +58,9 @@ class DataView
             /* } */
 	)->getBody();
         $jresp = json_decode($response);
-        $this->output->writeln(sizeof($jresp->{'data'}) . " new items, next: " . $jresp->{'meta'}->{'next'});
+        $this->output->writeln("supplied next: " . $next . ", " .
+            sizeof($jresp->{'data'}) .
+            " new items, next: " . $jresp->{'meta'}->{'next'});
 
 	return new Response(
             $this->template($response),

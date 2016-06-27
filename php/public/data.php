@@ -10,6 +10,6 @@ date_default_timezone_set('UTC');
 $req = Request::createFromGlobals();
 
 $view= new DataView;
-$res = $view->render();
+$res = $view->render($req);
 $res->prepare($req);
 $res->send();
