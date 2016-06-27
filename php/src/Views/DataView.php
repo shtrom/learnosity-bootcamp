@@ -19,16 +19,16 @@ class DataView
     public function render($req)
     {
         $this->output = new ConsoleOutput();
-	$security = [
-	    'consumer_key' => '4OkIF4wLnpI9L40m',
-	    'domain' => 'localhost',
-	];
-	$secret = '84468e36ee4d3bfea6f57fca1e2db3a5a00fa8e0';
-	$request = [
+        $security = [
+            'consumer_key' => '4OkIF4wLnpI9L40m',
+            'domain' => 'localhost',
+        ];
+        $secret = '84468e36ee4d3bfea6f57fca1e2db3a5a00fa8e0';
+        $request = [
             /* 'references' => [ 'bootcamp' ], */
             'types' => ['mcq'],
             'summary' => true,
-	];
+        ];
 
         $next = 0;
         if ($req->query->get("next")) {
@@ -47,38 +47,38 @@ class DataView
         }
         $request['limit'] = $limit;
 
-	$action = 'get';
+        $action = 'get';
 
-	$dataApi = new DataApi();
+        $dataApi = new DataApi();
         $response = $dataApi->request(
-	/* $response = $dataApi->requestRecursive( */
-	    'https://data.learnosity.com/latest/itembank/items',
-	    $security,
-	    $secret,
-	    $request,
-	    $action
+            /* $response = $dataApi->requestRecursive( */
+            'https://data.learnosity.com/latest/itembank/items',
+            $security,
+            $secret,
+            $request,
+            $action
             /* , */
             /* function($data) { */
             /*     $this->handler($data); */
             /* } */
-	)->getBody();
+        )->getBody();
         $jresp = json_decode($response);
         $this->output->writeln("supplied next: " . $next . ", " .
             sizeof($jresp->{'data'}) .
             " new items, next: " . $jresp->{'meta'}->{'next'});
 
-	return new Response(
+        return new Response(
             $this->template($response),
-	    Response::HTTP_OK,
-	    ['content-type' => 'application/json']
-	);
+            Response::HTTP_OK,
+            ['content-type' => 'application/json']
+        );
     }
 
     private function template($response)
     {
-	ob_start();
+        ob_start();
         print($response);
-	return ob_get_clean();
+        return ob_get_clean();
     }
 }
 
