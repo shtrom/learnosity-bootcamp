@@ -41,14 +41,24 @@ class ScrollingView
             <meta charset="UTF-8">
             <title>Counting for the modern person</title>
             <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-            <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
             <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
             <script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
         </head>
 
         <body>
-            <div id="items">
+            <div id="start" class="modal-overlay">
                 <span class="learnosity-item" data-reference="mfom_bootcamp_intro"></span>
+                <button>Start!</button>
+            </div>
+
+            <div id="end" class="modal-overlay" style="display:none">
+                <h1>Time's up!</h1>
+                <button>Results</button>
+            </div>
+
+            <div id="items">
+
             </div>
 
             <script src="//items.learnosity.com"></script>
