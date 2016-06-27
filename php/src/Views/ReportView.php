@@ -66,13 +66,13 @@ class ReportView
         );
 
         return new Response(
-            $this->template($init->generate(), $userid),
+            $this->template($init->generate(), $userid, $sessid),
             Response::HTTP_OK,
             ['content-type' => 'text/html']
         );
     }
 
-    private function template($initOpts, $userid)
+    private function template($initOpts, $userid, $sessid)
     {
         ob_start();
 ?><!DOCTYPE html>
