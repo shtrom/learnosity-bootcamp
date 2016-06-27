@@ -30,12 +30,29 @@ class LearnosityApi
         return $init->generate();
     }
 
+    public static function questions($req)
+    {
+        $userId = $req['user_id'];
+
+        $init = new Init(
+            'questions',
+            [
+                'consumer_key' => self::CONSUMER_KEY,
+                'domain' => self::DOMAIN,
+                'user_id' => $userId,
+            ],
+            self::CONSUMER_SECRET,
+            $req
+        );
+
+        return $init->generate();
+    }
+
     public static function data($action, $endpoint, $req)
     {
         $url = self::DATA_API_BASE_URL . '/' . $endpoint;
-        $res = [];
         $dataApi = new DataApi();
-        $dataApi->requestRecursive(
+        $res = $dataApi->request(
             $url,
             [
                 'consumer_key' => self::CONSUMER_KEY,
@@ -43,10 +60,7 @@ class LearnosityApi
             ],
             self::CONSUMER_SECRET,
             $req,
-            $action,
-            function ($data) use ($res) {
-                $res[] = $data;
-            }
+            $action
         );
 
         return $res;
