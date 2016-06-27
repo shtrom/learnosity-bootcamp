@@ -26,7 +26,12 @@ class DataView
         $secret = '84468e36ee4d3bfea6f57fca1e2db3a5a00fa8e0';
         $request = [
             /* 'references' => [ 'bootcamp' ], */
-            'types' => ['mcq'],
+            'tags' => [
+                [
+                    'type' => 'questiontype',
+                    'name' => 'mcq',
+                ],
+            ],
             'summary' => true,
         ];
 
