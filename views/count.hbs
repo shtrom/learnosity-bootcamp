@@ -4,8 +4,40 @@
 <a href="https://author.learnosity.com/org/1/activity/516294/edit">Edit these questions</a>
 
 <script>
-    var initOpts = {{{ initOpts }}};
-    var itemsApp = LearnosityItems.init(initOpts);
+    var genUuid = function() {
+      /* Courtesy of Stack Overflow [0]
+	 [0] http://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript */
+      function s4() {
+	return Math.floor((1 + Math.random()) * 0x10000)
+	  .toString(16)
+	  .substring(1);
+      }
+      return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+	s4() + '-' + s4() + s4() + s4();
+    }
+
+    var request = {
+      'rendering_type': 'assess',
+      'session_id': genUuid(),
+      'user_id': genUuid(),
+      'activity_template_id': 'mfom_bootcamp',
+      'type': 'local_practice',
+      'state': 'initial'
+    };
+
+    var itemsApp;
+
+    var xhr = new XMLHttpRequest();
+    console.log(xhr);
+    xhr.open("post", "/sign", true);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.send(JSON.stringify(request));
+    xhr.onloadend = function(data) {
+      console.log(data);
+      var initOpts = JSON.parse(xhr.responseText);
+      itemsApp = LearnosityItems.init(initOpts);
+    };
+    console.log("done");
 </script>
 
 <!--

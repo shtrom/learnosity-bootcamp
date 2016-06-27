@@ -1,5 +1,4 @@
 var express = require('express');
-var uuid = require('uuid');
 
 var router = express.Router();
 

@@ -1,0 +1,19 @@
+
+<h1>{{title}}</h1>
+
+<form method="post">
+  <label for="request">Request JSON:</label><br>
+  <textarea name="request" cols="80" rows="25">{
+  "rendering_type": "assess",
+  "session_id": "{{session_id}}",
+  "user_id": "{{user_id}}",
+  "activity_template_id": "mfom_bootcamp",
+  "type": "local_practice",
+  "state": "initial"
+}</textarea><br>
+  <input type="submit" value="Sign this request">
+</form>
+
+<!--
+  vim: ft=html
+-->
