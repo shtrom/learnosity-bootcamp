@@ -38,7 +38,9 @@ It will serve its content at http://localhost:8080 and offers a few endpoints:
 
 - [`/`](http://localhost:8080/) the assessment
 - [`/scrolling.php`](http://localhost:8080/scrolling.php) the infinite-scrolling assessment
-- [`/data.php[?next=XXXX.XXXX]`](http://localhost:8080/data.php) query the Data API for MCQs, in batches of 50; it takes an optional `next` parameter from the previous response (either on the query string or as a POST parameter) to get the next elements.
+- [`/data.php[?next=XXXX.XXXX][&limit=XXXX]`](http://localhost:8080/data.php) query the Data API for MCQs, in batches of 50; it takes some optional parameters (passed either on the query string or as a POST parameter):
+  - `next`, obtained from the previous response `[meta]` object, to get the next elements in the IBK
+  - `limit`, to limit the number of elements in one response (defaults to 50)
 - [`/report.php?sessid=XXXX`](http://localhost:8080/report.php?sessid=) provides a report on the performance of the session identified by `sessid`
 
 Authors
