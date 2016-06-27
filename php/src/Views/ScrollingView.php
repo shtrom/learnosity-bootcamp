@@ -47,17 +47,17 @@ class ScrollingView
         </head>
 
         <body>
-        <div id="items">
-            <span class="learnosity-item" data-reference="mfom_bootcamp_intro"></span>
-        </div>
+            <div id="items">
+                <span class="learnosity-item" data-reference="mfom_bootcamp_intro"></span>
+            </div>
 
-        <script src="//items.learnosity.com"></script>
+            <script src="//items.learnosity.com"></script>
 
-        <script>
-            var ITEM_API_INIT_OPTS = <?php echo $initOpts ?>;
-        </script>
+            <script>
+                var ITEM_API_INIT_OPTS = <?php echo $initOpts ?>;
+            </script>
 
-        <script src="/js/views/scrolling.js"></script>
+            <script src="/js/views/scrolling.js"></script>
         </body>
         </html><?php
         return ob_get_clean();

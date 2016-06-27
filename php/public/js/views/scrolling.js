@@ -1,7 +1,7 @@
 (function() {
 
-    var PRELOADED_SCREENS = 20;
-    var ITEM_LIMIT_PER_REQUEST = 20;
+    var PRELOADED_SCREENS = 5;
+    var ITEM_LIMIT_PER_REQUEST = 10;
     var DATA_ENDPOINT = '/data.php';
 
     var deferLoadNextPage = _.debounce(_.defer.bind(null, loadNextPage), 1000);
@@ -11,7 +11,7 @@
     var loadedItemCache = {};
 
     var itemsDiv = document.getElementById('items');
-    var itemsApp = LearnosityItems.init(ITEM_API_INIT_OPTS, {
+    window.itemsApp = LearnosityItems.init(ITEM_API_INIT_OPTS, {
         readyListener: main
     });
 
