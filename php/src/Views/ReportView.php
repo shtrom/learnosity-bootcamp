@@ -106,7 +106,7 @@ class ReportView
                         console.log(
                             'A session in the report was clicked: ' + data.session_id
                         );
-                        window.location = window.location.protocol + "//" + window.location.host + "/" + window.location.pathname +  "?userid=<?php print($userid); ?>&sessid=" + data.session_id;
+                        window.location = window.location.protocol + "//" + window.location.host + window.location.pathname +  "?userid=<?php print($userid); ?>&sessid=" + data.session_id;
                     });
                 }
             </script>
