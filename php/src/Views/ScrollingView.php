@@ -39,27 +39,65 @@ class ScrollingView
         <html lang="en">
         <head>
             <meta charset="UTF-8">
-            <title>Counting for the modern person</title>
+            <title>Infinite Inquisition</title>
             <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+            <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
-            <script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
+            <script src="http://momentjs.com/downloads/moment.js"></script>
+            <style>
+                .overlay {
+                    height: 100%;
+                    width: 100%;
+                    position: fixed;
+                    z-index: 1;
+                    left: 0;
+                    top: 0;
+                    background-color: rgba(255,255,255,0.6);
+                    overflow-x: auto;
+                 }
+
+                 .overlay-content {
+                     margin: 10% auto;
+                     width: 40%;
+                     background-color: #fff;
+                     text-align: center;
+                     border-radius: 5px;
+                     border: 1px solid #aaa;
+                     padding: 1em;
+                 }
+
+                 .clock {
+                     position: fixed;
+                     right: 0;
+                     top: 0;
+                     background-color: #fff;
+                     background-
+                 }
+            </style>
         </head>
 
         <body>
-            <div id="start" class="modal-overlay">
-                <span class="learnosity-item" data-reference="mfom_bootcamp_intro"></span>
-                <button>Start!</button>
+            <div id="start" class="overlay">
+                <div class="overlay-content">
+                    <span class="learnosity-item" data-reference="mfom_bootcamp_intro"></span>
+                    <button id="start-button" class="btn btn-default">Start</button>
+                </div>
             </div>
 
-            <div id="end" class="modal-overlay" style="display:none">
-                <h1>Time's up!</h1>
-                <button>Results</button>
+            <div id="end" class="overlay" style="display:none">
+                <div class="overlay-content">
+                    <h1>Time's up!</h1>
+                    <button id="results-button" class="btn btn-default">Results</button>
+                </div>
             </div>
 
-            <div id="items">
-
+            <div class="clock">
+                <h2>Time Remaining <span id="clock">0:00</span></h2>
             </div>
+
+            <div id="items"></div>
 
             <script src="//items.learnosity.com"></script>
 
