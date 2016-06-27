@@ -45,7 +45,8 @@ class DataView
             /*     $this->handler($data); */
             /* } */
 	)->getBody();
-        $this->output->writeln(json_encode($response));
+        $jresp = json_decode($response);
+        $this->output->writeln(sizeof($jresp->{'data'}) . " new items, next: " . $jresp->{'meta'}->{'next'});
 
 	return new Response(
             $this->template($response),
@@ -57,7 +58,7 @@ class DataView
     private function template($response)
     {
 	ob_start();
-        print(json_encode($response));
+        print($response);
 	return ob_get_clean();
     }
 }
