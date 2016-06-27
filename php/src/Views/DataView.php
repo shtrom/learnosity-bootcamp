@@ -39,11 +39,12 @@ class DataView
 	    $security,
 	    $secret,
 	    $request,
-	    $action//,
+	    $action
+            /* , */
             /* function($data) { */
             /*     $this->handler($data); */
             /* } */
-	);
+	)->getBody();
         $this->output->writeln(json_encode($response));
 
 	return new Response(
