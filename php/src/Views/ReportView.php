@@ -25,15 +25,49 @@ class ReportView
             $sessid = $req->request->get("sessid");
         }
 
-        $this->output->writeln("Requesting report for userid " . $userid . ", sessid " . $sessid);
-
-        if (!isset($sessid) || !isset($userid)) {
+        if (!isset($userid)) {
             return new Response(
                 $this->error(),
                 Response::HTTP_OK,
                 ['content-type' => 'text/html']
             );
         }
+
+        $reports = [
+            [
+                'id' => 'other-sessions',
+                'type' =>  'sessions-list',
+                'limit' => 10,
+                'users' => [
+                    [
+                        'id' => $userid,
+                        'name' => $userid,
+                    ]
+                ]
+            ],
+        ];
+
+        if (isset($sessid)) {
+            array_push($reports,
+                [
+                    'id' => 'scrolling-report',
+                    'type' => 'session-detail-by-item',
+                    'user_id' => $userid,
+                    'session_id' => $sessid,
+                ],
+                [
+                    "id" => "scrolling-score",
+                    "type" => "sessions-summary",
+                    'user_id' => $userid,
+                    'session_ids' => [ $sessid, ] ,
+                ]
+            );
+        } else {
+            $sessid = "unspecified";
+        }
+
+
+        $this->output->writeln("Requesting report for userid " . $userid . ", sessid " . $sessid);
 
         $init = new Init(
             'reports',
@@ -43,25 +77,7 @@ class ReportView
             ],
             '84468e36ee4d3bfea6f57fca1e2db3a5a00fa8e0',
             [
-                "reports" => [
-                    [
-                        'id' => 'other-sessions',
-                        'type' =>  'sessions-list',
-                        'limit' => 10,
-                        'users' => [
-                            [
-                                'id' => $userid,
-                                'name' => $userid,
-                            ]
-                        ],
-                    ],
-                    [
-                        'id' => 'scrolling-report',
-                        'type' => 'session-detail-by-question',
-                        'user_id' => $userid,
-                        'session_id' => $sessid,
-                    ],
-                ],
+                "reports" => $reports,
             ]
         );
 
@@ -85,31 +101,34 @@ class ReportView
         </head>
 
         <body>
+            <?php if(isset($sessid) && $sessid !== "unspecified") { ?>
             <h1>Report for <?php print($userid); ?>'s session <?php print($sessid); ?></h1>
+            <div id="scrolling-score"></div>
             <div id="scrolling-report"></div>
+            <?php } ?>
             <h2>All known sessions for <?php print($userid); ?></h2>
             <div id="other-sessions"></div>
 
             <script src="//reports.learnosity.com"></script>
 
-            <script>
-                var initOpts = <?php echo $initOpts ?>;
-                var reportsApp = LearnosityReports.init(initOpts,
-                    {
-                        readyListener: onReportsReady
-                    }
-                );
+        <script>
+        var initOpts = <?php echo $initOpts ?>;
+        var reportsApp = LearnosityReports.init(initOpts,
+        {
+            readyListener: onReportsReady
+        }
+    );
 
-                function onReportsReady() {
-                    var sessList = reportsApp.getReport("other-sessions");
-                    sessList.on('click:session', function (data) {
-                        console.log(
-                            'A session in the report was clicked: ' + data.session_id
-                        );
-                        window.location = window.location.protocol + "//" + window.location.host + window.location.pathname +  "?userid=<?php print($userid); ?>&sessid=" + data.session_id;
-                    });
-                }
-            </script>
+        function onReportsReady() {
+            var sessList = reportsApp.getReport("other-sessions");
+            sessList.on('click:session', function (data) {
+                console.log(
+                    'A session in the report was clicked: ' + data.session_id
+                );
+                window.location = window.location.protocol + "//" + window.location.host + window.location.pathname +  "?userid=<?php print($userid); ?>&sessid=" + data.session_id;
+            });
+        }
+        </script>
         </body>
         </html><?php
         return ob_get_clean();
@@ -129,7 +148,7 @@ class ReportView
 
         <body>
                 <h1>400 Bad Request: Missing parameters</h1>
-                <p>This endpoint requires parameters <tt>userid</tt> and <tt>sessid</tt>.</p>
+                <p>This endpoint requires parameters <tt>userid</tt> and, optionally, <tt>sessid</tt>.</p>
         </body>
         </html><?php
         return ob_get_clean();
