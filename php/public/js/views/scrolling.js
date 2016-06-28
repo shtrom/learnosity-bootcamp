@@ -2,8 +2,8 @@
 
     var PRELOADED_SCREENS = 5;
     var ITEM_LIMIT_PER_REQUEST = 10;
-    var DATA_ENDPOINT = '/data.php';
-    var MILLISECONDS_GIVEN = 2 * 60 * 1000;
+    var DATA_ENDPOINT = '/data';
+    var MILLISECONDS_GIVEN = 1 * 10 * 1000;
 
     var deferLoadNextPage = _.debounce(_.defer.bind(null, loadNextPage), 1000);
 
@@ -59,7 +59,7 @@
     }
 
     function results() {
-        document.location.href = '/report.php?userid=' +
+        document.location.href = '/report?userid=' +
             ITEM_API_INIT_OPTS.security.user_id +
             '&sessid=' +
             ITEM_API_INIT_OPTS.request.session_id;
