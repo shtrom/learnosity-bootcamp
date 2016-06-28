@@ -51,7 +51,7 @@ class ScrollingView
                     height: 100%;
                     width: 100%;
                     position: fixed;
-                    z-index: 1;
+                    z-index: 2;
                     left: 0;
                     top: 0;
                     background-color: rgba(255,255,255,0.6);
@@ -73,8 +73,15 @@ class ScrollingView
                      right: 0;
                      top: 0;
                      background-color: #fff;
-                     background-
+                     z-index: 1;
+                     padding: 1em;
+                     border-radius: 5px;
+                     border: 1px solid #aaa;
                  }
+
+                #items {
+                    margin-top: 10%;
+                }
             </style>
         </head>
 

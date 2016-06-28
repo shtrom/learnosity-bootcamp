@@ -29,6 +29,7 @@
     function setup() {
         startButton.addEventListener('click', start);
         resultsButton.addEventListener('click', results);
+        clock.textContent = moment(MILLISECONDS_GIVEN).format('m:ss');
     }
 
     function start() {
@@ -50,17 +51,17 @@
             if (timeRemaining <= 0) {
                 stop();
             } else {
-                clock.textContent = moment(timeRemaining).format('m:s');
+                clock.textContent = moment(timeRemaining).format('m:ss');
                 window.requestAnimationFrame(updateClock);
             }
-    }
+        }
     }
 
     function results() {
         document.location.href = '/report.php?userid=' +
-            ITEM_API_INIT_OPTS.security.userId + 
+            ITEM_API_INIT_OPTS.security.user_id +
             '&sessid=' +
-            ITEM_API_INIT_OPTS.request.sessionId;
+            ITEM_API_INIT_OPTS.request.session_id;
     }
 
     function watchScrolling() {
@@ -141,9 +142,9 @@
     function currentlyLoadedItems() {
         var allItems = document.querySelectorAll('.learnosity-item');
         var allRefs = [];
-        allItems.forEach(function (item) {
-            allRefs.push(item.getAttribute('data-reference'));
-        });
+        for (var i = 0; i < allItems.length; i++) {
+            allRefs.push(allItems[i].getAttribute('data-reference'));
+        }
 
         return allRefs;
     }
