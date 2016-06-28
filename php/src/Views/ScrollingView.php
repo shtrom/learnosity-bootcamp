@@ -56,28 +56,28 @@ class ScrollingView
                     top: 0;
                     background-color: rgba(255,255,255,0.6);
                     overflow-x: auto;
-                 }
+                }
 
-                 .overlay-content {
-                     margin: 10% auto;
-                     width: 40%;
-                     background-color: #fff;
-                     text-align: center;
-                     border-radius: 5px;
-                     border: 1px solid #aaa;
-                     padding: 1em;
-                 }
+                .overlay-content {
+                    margin: 10% auto;
+                    width: 40%;
+                    background-color: #fff;
+                    text-align: center;
+                    border-radius: 5px;
+                    border: 1px solid #aaa;
+                    padding: 1em;
+                }
 
-                 .clock {
-                     position: fixed;
-                     right: 0;
-                     top: 0;
-                     background-color: #fff;
-                     z-index: 1;
-                     padding: 1em;
-                     border-radius: 5px;
-                     border: 1px solid #aaa;
-                 }
+                .clock {
+                    position: fixed;
+                    right: 0;
+                    top: 0;
+                    background-color: #fff;
+                    z-index: 1;
+                    padding: 1em;
+                    border-radius: 5px;
+                    border: 1px solid #aaa;
+                }
 
                 #items {
                     margin-top: 10%;
