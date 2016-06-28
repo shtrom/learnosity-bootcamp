@@ -9,10 +9,12 @@ class ScrollingView
     public function render($userId, $sessionId)
     {
         $initOpts = LearnosityApi::items([
+            'activity_id' => 'mfom_bootcamp_infinite_inquisition',
+            'name' => 'Infinite Inquisition',
             'rendering_type' => 'inline',
             'user_id' => $userId,
             'session_id' => $sessionId,
-            'type' => 'local_practice',
+            'type' => 'submit_practice',
             'state' => 'initial',
             'items' => ['mfom_bootcamp_intro'],
             'config' => [

@@ -20,7 +20,7 @@
     var resultsButton = document.getElementById('results-button');
     var clock = document.getElementById('clock');    
 
-    window.itemsApp = LearnosityItems.init(ITEM_API_INIT_OPTS, {
+    var itemsApp = LearnosityItems.init(ITEM_API_INIT_OPTS, {
         readyListener: watchScrolling
     });
 
@@ -42,6 +42,7 @@
     function stop() {
         $(endOverlay).show();
         running = false;
+        itemsApp.save();
     }
 
     function updateClock() {
@@ -156,5 +157,8 @@
 
         return itemSpan;
     }
+
+    // Making the publically available for testing.
+    window.itemsApp = itemsApp;
 
 })();
