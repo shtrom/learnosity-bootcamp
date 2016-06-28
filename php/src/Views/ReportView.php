@@ -33,22 +33,8 @@ class ReportView
             );
         }
 
-        $reports = [
-            [
-                'id' => 'other-sessions',
-                'type' =>  'sessions-list',
-                'limit' => 10,
-                'users' => [
-                    [
-                        'id' => $userid,
-                        'name' => $userid,
-                    ]
-                ]
-            ],
-        ];
-
         if (isset($sessid)) {
-            array_push($reports,
+            $reports = [
                 [
                     'id' => 'scrolling-report',
                     'type' => 'session-detail-by-item',
@@ -61,9 +47,23 @@ class ReportView
                     'user_id' => $userid,
                     'session_ids' => [ $sessid, ] ,
                 ]
-            );
+            ];
+
         } else {
             $sessid = "unspecified";
+            $reports = [
+                [
+                    'id' => 'other-sessions',
+                    'type' =>  'sessions-list',
+                    'limit' => 10,
+                    'users' => [
+                        [
+                            'id' => $userid,
+                            'name' => $userid,
+                        ]
+                    ]
+                ],
+            ];
         }
 
 
@@ -102,12 +102,13 @@ class ReportView
 
         <body>
             <?php if(isset($sessid) && $sessid !== "unspecified") { ?>
-            <h1>Report for <?php print($userid); ?>'s session <?php print($sessid); ?></h1>
+            <h1 id="scrolling-head">Report for <?php print($userid); ?>'s session <?php print($sessid); ?></h1>
             <div id="scrolling-score"></div>
             <div id="scrolling-report"></div>
-            <?php } ?>
-            <h2>All known sessions for <?php print($userid); ?></h2>
+            <?php } else { ?>
+            <h1 id="session-head">All known sessions for <?php print($userid); ?></h1>
             <div id="other-sessions"></div>
+            <?php } ?>
 
             <script src="//reports.learnosity.com"></script>
 
@@ -115,7 +116,13 @@ class ReportView
         var initOpts = <?php echo $initOpts ?>;
         var reportsApp = LearnosityReports.init(initOpts,
         {
-            readyListener: onReportsReady
+            readyListener: onReportsReady,
+            errorListener: function(e) {
+                 document.getElementById("scolling-head").innerHTML = e;
+                 document.getElementById("scolling-report").innerHTML = e;
+                 document.getElementById("other-head").innerHTML = e;
+                 document.getElementById("other-sessions").innerHTML = e;
+            },
         }
     );
 
