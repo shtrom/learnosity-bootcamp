@@ -45,15 +45,15 @@
 
     function updateClock() {
         if (running) {
-	    var endTime = startTime + MILLISECONDS_GIVEN;
-	    var timeRemaining = endTime - Date.now();
+        var endTime = startTime + MILLISECONDS_GIVEN;
+        var timeRemaining = endTime - Date.now();
             if (timeRemaining <= 0) {
                 stop();
             } else {
                 clock.textContent = moment(timeRemaining).format('m:s');
                 window.requestAnimationFrame(updateClock);
             }
-	}
+    }
     }
 
     function results() {
