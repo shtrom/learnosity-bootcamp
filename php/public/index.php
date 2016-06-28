@@ -47,6 +47,7 @@ $addItems = function ($req) {
 $routes = [
     'counting' => $counting,
     'infinite' => $infinite,
+    'scrolling' => $infinite,
     'report' => $report,
     'data' => $data,
     'add-items' => $addItems,
