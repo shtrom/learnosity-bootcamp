@@ -51,9 +51,15 @@ class ReportView
             array_push($reports,
                 [
                     'id' => 'scrolling-report',
-                    'type' => 'session-detail-by-question',
+                    'type' => 'session-detail-by-item',
                     'user_id' => $userid,
                     'session_id' => $sessid,
+                ],
+                [
+                    "id" => "scrolling-score",
+                    "type" => "sessions-summary",
+                    'user_id' => $userid,
+                    'session_ids' => [ $sessid, ] ,
                 ]
             );
         } else {
@@ -97,6 +103,7 @@ class ReportView
         <body>
             <?php if(isset($sessid) && $sessid !== "unspecified") { ?>
             <h1>Report for <?php print($userid); ?>'s session <?php print($sessid); ?></h1>
+            <div id="scrolling-score"></div>
             <div id="scrolling-report"></div>
             <?php } ?>
             <h2>All known sessions for <?php print($userid); ?></h2>
